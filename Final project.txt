@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+int rps(char user,char computer)
+{
+    if(user==computer)
+    {
+        return 0;
+    }
+    if(user=='R'&&computer=='P')
+    {
+        return -1;
+    }
+    else if(user=='R'&&computer=='S')
+    {
+        return 1;
+    }
+    if(user=='P'&&computer=='S')
+    {
+        return -1;
+    }
+    else if(user=='P'&&computer=='R')
+    {
+        return 1;
+    }
+        if(user=='S'&&computer=='R')
+    {
+        return -1;
+    }
+    else if(user=='S'&&computer=='P')
+    {
+        return 1;
+    }
+}
+int main()
+{
+    char user , computer;
+    int player=0;
+    int bot=0;
+    int draw=0;
+    int n;
+    char name[20];
+    printf("Enter you're name :");
+    scanf("%s[^20]",name);
+    printf("\nWELCOME TO THE GAME %s!",name);
+    printf("\nR=Rock!\nS=Scissors\nP=Paper\n");
+    printf(" \n");
+    printf("Enter the number of turns you want to play:");
+    scanf("%d",&n);
+    
+    srand(time(0));
+    int number=rand()%100;
+    
+    if(number<36)
+    {
+        computer='R';
+    }
+    else if(number>36&&number<66)
+    {
+        computer='S';
+    }
+    else
+    {
+        computer='P';
+    }
+    for(int i=0;i<n;i++)
+    {
+    printf(" \n");
+    printf("Enter your turn : ");
+    scanf(" %c",&user);
+
+    int result=rps(user,computer);
+     printf("Computer's turn : %c\n",computer);
+    if(result==1)
+    {
+        printf("wow!%s you've got a point\n",name);
+        player++;
+    }
+    else if(result==-1)
+    {
+        printf("Computer gets a point\n");
+        bot++;
+    }
+    else if(result==0)
+    {
+        printf("OOPS! IT'S A DRAW.\n");
+        draw++;
+    }
+    printf(" \n");
+    }
+    printf("%s you're total score is: %d\n",name,player);
+    printf("computer's total score is : %d\n",bot);
+    printf("OOPS! Total matches drawn : %d\n",draw);
+    printf(" \n");
+    if(player>bot)
+    {
+        printf("CONGRATULATIONS! %s ,\nYou have won the game! ",name);
+    }
+    else if(bot>player)
+    {
+        printf("Computer has won the game.");
+    }
+    else
+    {
+        printf("SORRY! Its a draw.");
+    }
+    printf("\nHope you enjoyed the play!");
+    printf("\nSee you again!");
+    
+    return 0;
+}
+
+
+
